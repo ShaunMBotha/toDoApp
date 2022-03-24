@@ -1,0 +1,143 @@
+* {
+    font-family: sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: rgb(46, 52, 59);
+    color: rgb(201, 201, 201);
+}
+
+header {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: grey;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+#newTaskForm {
+    display: flex;
+    background-color:rgb(37, 43, 49);
+    padding: 0.5rem;
+    border-radius: 1.25rem;
+    margin-right: 0rem;
+    font-size: 1.25rem;
+}
+
+input, button {
+    /* padding: 0.5rem; */
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+#newTask {
+    color: white;
+}
+
+#newDate, .date {
+    color: grey;
+}
+
+#newTask {
+    flex: 50% 1 1;
+    background-color:rgb(29, 34, 39);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+}
+
+#newSubmit {
+    color: rgb(204, 133, 0);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+#newSubmit:hover {
+    opacity: 0.8;
+}
+
+#newSubmit:active {
+    opacity: 0.6;
+}
+
+main {
+    flex: 1 1 0%;
+    padding: 2rem 1rem;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#taskList {
+    padding: 0rem;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: grey;
+    margin-bottom: 1rem;
+
+}
+
+.task {
+    display: flex;
+    justify-content: space-around;    
+    background-color:rgb(37, 43, 49);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.num, .text, .date, .actions {
+    color: grey;
+    /* padding: auto 0 auto 0; */
+    /* margin: auto 0 auto 0; */
+}
+
+.text-edit {
+    color: rgb(221, 221, 221);
+    background-color:rgb(29, 34, 39);
+    padding: 0.1rem;
+    border-radius: 0.5rem;
+}
+
+
+
+
+.edit, .delete{
+    color: grey;
+}
+
+.edit:hover, .delete:hover{
+    opacity: 0.8;
+}
+
+.edit:active, .delete:active{
+    opacity: 0.6;
+}
