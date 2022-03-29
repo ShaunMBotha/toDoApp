@@ -138,7 +138,6 @@ function showTasks() {
 // Complete Task Function
 function completeTask(index) {
 
-    // C tasks
     let cTasksLi = localStorage.getItem("c-tasks");
     if (cTasksLi == null) {
         cTaskObj = [];
@@ -149,28 +148,18 @@ function completeTask(index) {
     localStorage.setItem("c-tasks", JSON.stringify(cTaskObj));
     showTasks();
 
-    console.log(index);
-
     let tasksLi = localStorage.getItem("tasks");
 
     tasksLi = JSON.parse(tasksLi);
     cTasksLi = JSON.parse(cTasksLi);
 
-    console.log(tasksLi);
-    console.log(cTasksLi);
-
     let cTask = tasksLi[index].name;
     let cDate = tasksLi[index].date;
-
-    console.log(cTask);
-    console.log(cDate);
 
     myCTaskObj = {
         name: cTask,
         date: cDate
     }
-
-    console.log(cTaskObj);
 
     cTaskObj.push(myCTaskObj);
     taskObj.splice(index, 1);
@@ -180,14 +169,49 @@ function completeTask(index) {
 
 }
 
+// Undo complete task Function
+function undoTask(index) {
 
-// Delete Function
+    let tasksLi = localStorage.getItem("tasks");
+    if (tasksLi == null) {
+        taskObj = [];
+    } else {
+        taskObj = JSON.parse(tasksLi);
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(taskObj));
+    showTasks();
+
+    let cTasksLi = localStorage.getItem("c-tasks");
+    
+    console.log(cTasksLi);
+
+    cTasksLi = JSON.parse(cTasksLi);
+    tasksLi = JSON.parse(tasksLi);
+    
+    let task = cTasksLi[index].name;
+    let date = cTasksLi[index].date;
+
+    myTaskObj = {
+        name: task,
+        date: date
+    }
+
+    taskObj.push(myTaskObj);
+    cTaskObj.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(taskObj));
+    localStorage.setItem("c-tasks", JSON.stringify(cTaskObj));
+    showTasks();
+
+}
+
+
+// Delete Functions
 function deleteTask(index) {
 
     let confirmDel = confirm("Delete this task?");
 
     if (confirmDel == true) {
-        // let state = document.getElementById(index.concat("ture"));
 
         let tasksLi = localStorage.getItem("tasks");
         if (tasksLi == null) {
@@ -207,7 +231,6 @@ function cDeleteTask(index) {
     let confirmDel = confirm("Delete this completed task?");
 
     if (confirmDel == true) {
-        // let state = document.getElementById(index.concat("ture"));
 
         let cTasksLi = localStorage.getItem("c-tasks");
         if (cTasksLi == null) {
@@ -231,17 +254,10 @@ function editTask(index) {
     let editState = document.getElementById("edit".concat(index));
     let editCom = document.getElementById("complete".concat(index));
 
-    let cTasksLi = localStorage.getItem("c-tasks");
-
-    
-    
-
-    // console.log(editState)
-    
-
     let editTaskObj = JSON.parse(tasksLi);
 
-    if (editState.innerText.toLowerCase() == "edit") {
+    if (editState.innerText.toLowerCase() == "edit"){
+
         editState.innerText = "Save";
         editTask.removeAttribute("readonly");
         editTask.className = "text-edit";
@@ -249,15 +265,9 @@ function editTask(index) {
         editCom.innerText = "Delete";
         editCom.removeAttribute("onclick");
         editCom.setAttribute("onclick", "deleteTask(".concat(index).concat(");"));
-
         editTask.focus();
 
     } else {
-
-        if (editCom.innerText.toLowerCase() == "delete") {
-
-            
-        }
 
         editState.innerText = "Edit";
         editTask.setAttribute("readonly", "readonly");
@@ -275,9 +285,7 @@ function editTask(index) {
         localStorage.setItem("tasks", JSON.stringify(editTaskObj));
         showTasks();
 
-
     }
-
 }
 
 showTasks();
