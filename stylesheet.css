@@ -29,6 +29,7 @@ h1 {
 }
 
 ul {
+    text-align: center;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -52,15 +53,12 @@ input, button {
     border: none;
 }
 
-#newTask {
-    color: white;
-}
-
 #newDate, .date {
     color: grey;
 }
 
 #newTask {
+    color: white;
     flex: 50% 1 1;
     background-color:rgb(29, 34, 39);
     padding: 1rem;
@@ -100,6 +98,7 @@ h2 {
     font-size: 1.5rem;
     font-weight: 300;
     color: grey;
+    margin-top: 1rem;
     margin-bottom: 1rem;
 
 }
@@ -113,6 +112,14 @@ h2 {
     margin-bottom: 1rem;
 }
 
+.c-task {
+    display: flex;
+    justify-content: space-around;    
+    background-color:rgb(37, 43, 49);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
 
 .num, .text, .date, .actions {
     color: grey;
@@ -127,17 +134,14 @@ h2 {
     border-radius: 0.5rem;
 }
 
-
-
-
-.edit, .delete{
+.edit, .delete, .complete, .undo {
     color: grey;
 }
 
-.edit:hover, .delete:hover{
+.edit:hover, .delete:hover, .complete:hover, .undo:hover{
     opacity: 0.8;
 }
 
-.edit:active, .delete:active{
+.edit:active, .delete:active, .complete:active, .undo:active{
     opacity: 0.6;
 }

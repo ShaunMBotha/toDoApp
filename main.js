@@ -1,10 +1,13 @@
+showTasks();
+
 //Add task
 
-let addBtn = document.getElementById("newSubmit");
-addBtn.addEventListener("click", (e) => {
+let subBtn = document.getElementById("newSubmit");
+subBtn.addEventListener("click", (e) => {
 
     let addTask = document.getElementById("newTask");
     let addDate = document.getElementById("newDate");
+    
 
     if (addTask.value == "" || addDate.value == "") {
         return alert("Fill both the Task Description and the Due Date")
@@ -18,19 +21,23 @@ addBtn.addEventListener("click", (e) => {
     }
     let myObj = {
         name: addTask.value,
-        date: addDate.value
+        date: addDate.value,
+        isCom: false
     }
 
     taskObj.push(myObj);
     localStorage.setItem("tasks", JSON.stringify(taskObj));
     addDate.value = "";
     addTask.value = "";
-    
+
+
     showTasks();
 });
 
 // Poppulate page with tasks
 function showTasks() {
+
+    //Tasks section
 
     let tasksLi = localStorage.getItem("tasks");
 
@@ -61,7 +68,7 @@ function showTasks() {
 
                     <div class="actions">
                         <button id="${index}"onclick="editTask(${index})" class="edit">Edit</button>
-                        <button id="${index}"onclick="deleteTask(${index})" class="delete">Delete</button>
+                        <button id="${index}${element.isCom}"onclick="completeTask(${index})" class="complete">Complete</button>
                     </div>
                 </div>
             
@@ -77,7 +84,102 @@ function showTasks() {
     } else {
         taskElm.innerHTML = `No tasks available, add new tasks above.`;
     }
+
+    //Completed Task section---------------------------------------------------------------------------------------
+
+    let cTasksLi = localStorage.getItem("c-tasks");
+
+    if (cTasksLi == null) {
+        cTaskObj = [];
+    } else {
+        cTaskObj = JSON.parse(cTasksLi);
+    }
+
+    let cHtml = "";
+
+    cTaskObj.forEach((element, cIndex) => {
+        cHtml += `
+
+        <li>
+            
+                <div class="c-task">
+                    <div class="num">
+                        <div>${cIndex + 1}</div>
+                    </div>
+                    <div class="content">
+                        <input type="text" id="cField${cIndex}" class="text" value="${element.name}" readonly>
+                    </div>
+
+                    <div class="date">
+                        <input type="date" id="cFieldD${cIndex}" class="date" readonly value="${element.date}">
+                    </div>
+
+                    <div class="actions">
+                        <button id="${cIndex}"onclick="undoTask(${cIndex})" class="undo">Undo</button>
+                        <button id="${cIndex}${element.isCom}"onclick="deleteTask(${cIndex})" class="delete">Delete</button>
+                    </div>
+                </div>
+            
+        </li>
+
+            `;
+    });
+
+    let cTaskElm = document.getElementById("c-task");
+
+    if (cTaskObj.length != 0) {
+        cTaskElm.innerHTML = cHtml;
+    } else {
+        cTaskElm.innerHTML = `No Completed tasks available, complete tasks above.`;
+    }
+
 }
+
+// Complete Task Function
+function completeTask(index) {
+
+    // C tasks
+    let cTasksLi = localStorage.getItem("c-tasks");
+    if (cTasksLi == null) {
+        cTaskObj = [];
+    } else {
+        cTaskObj = JSON.parse(cTasksLi);
+    }
+
+    localStorage.setItem("c-tasks", JSON.stringify(cTaskObj));
+    showTasks();
+
+    console.log(index);
+
+    let tasksLi = localStorage.getItem("tasks");
+
+    tasksLi = JSON.parse(tasksLi);
+    cTasksLi = JSON.parse(cTasksLi);
+
+    console.log(tasksLi);
+    console.log(cTasksLi);
+
+    let cTask = tasksLi[index].name;
+    let cDate = tasksLi[index].date;
+
+    console.log(cTask);
+    console.log(cDate);
+
+    myCTaskObj = {
+        name: cTask,
+        date: cDate
+    }
+
+    console.log(cTaskObj);
+
+    cTaskObj.push(myCTaskObj);
+    taskObj.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(taskObj));
+    localStorage.setItem("c-tasks", JSON.stringify(cTaskObj));
+    showTasks();
+
+}
+
 
 // Delete Function
 function deleteTask(index) {
@@ -85,6 +187,8 @@ function deleteTask(index) {
     let confirmDel = confirm("Delete this task?");
 
     if (confirmDel == true) {
+        // let state = document.getElementById(index.concat("ture"));
+
         let tasksLi = localStorage.getItem("tasks");
         if (tasksLi == null) {
             taskObj = [];
@@ -100,12 +204,16 @@ function deleteTask(index) {
 
 // Edit Function
 function editTask(index) {
-    
+
     let tasksLi = localStorage.getItem("tasks");
     let editTask = document.getElementById("field".concat(index));
     let editDate = document.getElementById("fieldD".concat(index));
     let editState = document.getElementById(index);
     
+
+    console.log(editState)
+    
+
     let editTaskObj = JSON.parse(tasksLi);
 
     if (editState.innerText.toLowerCase() == "edit") {
@@ -114,6 +222,10 @@ function editTask(index) {
         editTask.className = "text-edit";
         editTask.focus();
         editDate.removeAttribute("readonly");
+
+                
+
+
     } else {
         editState.innerText = "Edit";
         editTask.setAttribute("readonly", "readonly");
@@ -121,12 +233,12 @@ function editTask(index) {
         editDate.setAttribute("readonly", "readonly");
         editTask = document.getElementById("field".concat(index));
         editDate = document.getElementById("fieldD".concat(index));
-       
-        editTaskObj [index] = {
+
+        editTaskObj[index] = {
             name: editTask.value,
             date: editDate.value
         }
-        
+
         localStorage.setItem("tasks", JSON.stringify(editTaskObj));
         showTasks();
 
