@@ -54,12 +54,12 @@ function showTasks() {
 
         <li>
             
-                <div class="task">
+                <div class="taskLi">
                     <div class="num">
                         <div>${index + 1}</div>
                     </div>
                     <div class="content">
-                        <input type="text" id="field${index}" class="text" value="${element.name}" readonly>
+                        <input type="text" id="field${index}" class="text" size="50" value="${element.name}" readonly>
                     </div>
 
                     <div class="date">
@@ -102,12 +102,12 @@ function showTasks() {
 
         <li>
             
-                <div class="c-task">
+                <div class="c-taskLi">
                     <div class="num">
                         <div>${cIndex + 1}</div>
                     </div>
                     <div class="content">
-                        <input type="text" id="cField${cIndex}" class="text" value="${element.name}" readonly>
+                        <input type="text" id="cField${cIndex}" class="text" size="50" value="${element.name}" readonly>
                     </div>
 
                     <div class="date">

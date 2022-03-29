@@ -46,7 +46,6 @@ ul {
 }
 
 input, button {
-    /* padding: 0.5rem; */
     appearance: none;
     background: none;
     outline: none;
@@ -71,6 +70,8 @@ input, button {
     color: rgb(204, 133, 0);
     font-size: 1.25rem;
     font-weight: 700;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
 }
 
 #newSubmit:hover {
@@ -103,7 +104,16 @@ h2 {
 
 }
 
-.task {
+.taskLi {
+    display: flex;
+        
+    background-color:rgb(37, 43, 49);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.c-taskLi {
     display: flex;
     justify-content: space-around;    
     background-color:rgb(37, 43, 49);
@@ -112,19 +122,36 @@ h2 {
     margin-bottom: 1rem;
 }
 
-.c-task {
-    display: flex;
-    justify-content: space-around;    
-    background-color:rgb(37, 43, 49);
-    padding: 1rem;
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-}
-
-.num, .text, .date, .actions {
+.num {
     color: grey;
-    /* padding: auto 0 auto 0; */
-    /* margin: auto 0 auto 0; */
+    flex: 5%;
+}
+
+.content {
+    text-align: left;
+    flex: 60%;
+}
+
+.date {
+    text-align:right;
+    flex: 14%;
+    
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 2px;
+    opacity: 0.6;
+    filter: invert(0.8);
+  }
+
+.actions {
+    flex: 25%;
+}
+
+.text, .date, .actions {
+    color: grey;
 }
 
 .text-edit {
