@@ -22,7 +22,7 @@ subBtn.addEventListener("click", (e) => {
     let myObj = {
         name: addTask.value,
         date: addDate.value,
-        isCom: false
+        
     }
 
     taskObj.push(myObj);
@@ -67,8 +67,8 @@ function showTasks() {
                     </div>
 
                     <div class="actions">
-                        <button id="${index}"onclick="editTask(${index})" class="edit">Edit</button>
-                        <button id="${index}${element.isCom}"onclick="completeTask(${index})" class="complete">Complete</button>
+                        <button id="edit${index}"onclick="editTask(${index})" class="edit">Edit</button>
+                        <button id="complete${index}"onclick="completeTask(${index})" class="complete">Complete</button>
                     </div>
                 </div>
             
@@ -115,8 +115,8 @@ function showTasks() {
                     </div>
 
                     <div class="actions">
-                        <button id="${cIndex}"onclick="undoTask(${cIndex})" class="undo">Undo</button>
-                        <button id="${cIndex}${element.isCom}"onclick="deleteTask(${cIndex})" class="delete">Delete</button>
+                        <button id="undo${cIndex}"onclick="undoTask(${cIndex})" class="undo">Undo</button>
+                        <button id="cD${cIndex}"onclick="cDeleteTask(${cIndex})" class="delete">Delete</button>
                     </div>
                 </div>
             
@@ -202,16 +202,41 @@ function deleteTask(index) {
     }
 }
 
+function cDeleteTask(index) {
+
+    let confirmDel = confirm("Delete this completed task?");
+
+    if (confirmDel == true) {
+        // let state = document.getElementById(index.concat("ture"));
+
+        let cTasksLi = localStorage.getItem("c-tasks");
+        if (cTasksLi == null) {
+            cTaskObj = [];
+        } else {
+            cTaskObj = JSON.parse(cTasksLi);
+        }
+
+        cTaskObj.splice(index, 1);
+        localStorage.setItem("c-tasks", JSON.stringify(cTaskObj));
+        showTasks();
+    }
+}
+
 // Edit Function
 function editTask(index) {
 
     let tasksLi = localStorage.getItem("tasks");
     let editTask = document.getElementById("field".concat(index));
     let editDate = document.getElementById("fieldD".concat(index));
-    let editState = document.getElementById(index);
+    let editState = document.getElementById("edit".concat(index));
+    let editCom = document.getElementById("complete".concat(index));
+
+    let cTasksLi = localStorage.getItem("c-tasks");
+
+    
     
 
-    console.log(editState)
+    // console.log(editState)
     
 
     let editTaskObj = JSON.parse(tasksLi);
@@ -220,17 +245,25 @@ function editTask(index) {
         editState.innerText = "Save";
         editTask.removeAttribute("readonly");
         editTask.className = "text-edit";
-        editTask.focus();
         editDate.removeAttribute("readonly");
+        editCom.innerText = "Delete";
+        editCom.removeAttribute("onclick");
+        editCom.setAttribute("onclick", "deleteTask(".concat(index).concat(");"));
 
-                
-
+        editTask.focus();
 
     } else {
+
+        if (editCom.innerText.toLowerCase() == "delete") {
+
+            
+        }
+
         editState.innerText = "Edit";
         editTask.setAttribute("readonly", "readonly");
         editTask.className = "text";
         editDate.setAttribute("readonly", "readonly");
+        editCom.innerText = "Complete";
         editTask = document.getElementById("field".concat(index));
         editDate = document.getElementById("fieldD".concat(index));
 
