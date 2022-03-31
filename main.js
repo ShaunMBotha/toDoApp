@@ -150,13 +150,13 @@ function sortBtnName() {
         taskObj = JSON.parse(tasksLi);
         switch (orderN) {
             case 0:
-                taskObj.sort((a, b) => (a.name < b.name ? -1 : 1));
+                taskObj.sort((a, b) => (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1));
                 orderN = 1;
                 orderState.innerHTML = "Sort by Name &#8593;";
                 break;
 
             case 1:
-                taskObj.sort((a, b) => (a.name > b.name ? -1 : 1));
+                taskObj.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? -1 : 1));
                 orderN = 0;
                 orderState.innerHTML = "Sort by Name &#8595;";
                 break;
