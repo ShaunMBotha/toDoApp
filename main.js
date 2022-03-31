@@ -1,4 +1,6 @@
 showTasks();
+let orderN = 0;
+let orderD = 0;
 
 //Add task
 
@@ -135,6 +137,73 @@ function showTasks() {
 
 }
 
+//Sort Functions
+function sortBtnName() {
+    
+    let orderState = document.getElementById("sBName");
+    let tasksLi = localStorage.getItem("tasks");
+    taskObj = JSON.parse(tasksLi);
+    
+    if (taskObj.length < 2) {
+        console.log("Theres not enough data to sort")
+    } else {
+        taskObj = JSON.parse(tasksLi);
+        switch (orderN) {
+            case 0:
+                taskObj.sort((a, b) => (a.name < b.name ? -1 : 1));
+                orderN = 1;
+                orderState.innerHTML = "Sort by Name &#8593;";
+                break;
+
+            case 1:
+                taskObj.sort((a, b) => (a.name > b.name ? -1 : 1));
+                orderN = 0;
+                orderState.innerHTML = "Sort by Name &#8595;";
+                break;
+        
+            default:
+                break;
+        }
+     
+        localStorage.setItem("tasks", JSON.stringify(taskObj));
+    }
+
+    showTasks();
+}
+
+function sortBtnDate(){
+
+    let orderState = document.getElementById("sBDate");    
+    let tasksLi = localStorage.getItem("tasks");
+    taskObj = JSON.parse(tasksLi);
+    
+    if (taskObj.length < 2) {
+        console.log("Theres not enough data to sort")
+    } else {
+        taskObj = JSON.parse(tasksLi);
+        switch (orderD) {
+            case 0:
+                taskObj.sort((a, b) => (a.date < b.date ? -1 : 1));
+                orderD = 1;
+                orderState.innerHTML = "Sort by Name &#8593;";
+                break;
+
+            case 1:
+                taskObj.sort((a, b) => (a.date > b.date ? -1 : 1));
+                orderD = 0;
+                orderState.innerHTML = "Sort by Name &#8595;";
+                break;
+        
+            default:
+                break;
+        }
+     
+        localStorage.setItem("tasks", JSON.stringify(taskObj));
+    }
+
+    showTasks();
+}
+
 // Complete Task Function
 function completeTask(index) {
 
@@ -184,8 +253,6 @@ function undoTask(index) {
 
     let cTasksLi = localStorage.getItem("c-tasks");
     
-    console.log(cTasksLi);
-
     cTasksLi = JSON.parse(cTasksLi);
     tasksLi = JSON.parse(tasksLi);
     
@@ -264,6 +331,7 @@ function editTask(index) {
         editDate.removeAttribute("readonly");
         editCom.innerText = "Delete";
         editCom.removeAttribute("onclick");
+        editCom.className = "delete";
         editCom.setAttribute("onclick", "deleteTask(".concat(index).concat(");"));
         editTask.focus();
 

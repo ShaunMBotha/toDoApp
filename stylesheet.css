@@ -13,11 +13,24 @@ body {
     color: rgb(201, 201, 201);
 }
 
-header {
-    padding: 2rem 1rem;
+#userInputSection {
+    padding-top: 2rem;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+}
+
+#top {
+    background-color:rgb(29, 34, 39);
+    height: 100px;
+    width: 100%;
+}
+
+#top-container {
+    
+    display: flex;
+    padding: 1.5rem 3rem;
+    
 }
 
 h1 {
@@ -67,7 +80,7 @@ input, button {
 }
 
 #newSubmit {
-    color: rgb(204, 133, 0);
+    color: rgb(193, 147, 63);
     font-size: 1.25rem;
     font-weight: 700;
     margin-left: 0.5rem;
@@ -88,6 +101,42 @@ main {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+}
+
+footer {
+    background-color:rgb(29, 34, 39);
+    height: 100px;
+    width: 100%;
+}
+
+#banner {
+    color: grey;
+    padding: 2.2rem;
+    display: flex;
+
+}
+
+#sortBtns {
+    text-align: right;
+    margin-right: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+#sBName, #sBDate, #sBInput {
+    color: rgb(169, 169, 169);
+    appearance: none;
+    background: rgb(37, 43, 49);
+    outline: rgb(29, 34, 39);
+    border: solid 1.5px rgb(29, 34, 39) ;
+    border-radius: 0.3rem;
+}
+
+#sBName:hover, #sBDate:hover, #sBInput:hover {
+    opacity: 0.8;
+}
+
+#sBName:active, #sBDate:active, #sBInput:active {
+    opacity: 0.6;
 }
 
 #taskList {
@@ -165,11 +214,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgb(221, 221, 221);
     background-color:rgb(29, 34, 39);
     padding: 0.1rem;
+    padding-left: 0.5rem;
     border-radius: 0.5rem;
 }
 
-.edit, .delete, .complete, .undo {
+.edit, .undo {
     color: grey;
+}
+
+.complete {
+    color: rgb(193, 147, 63);
+}
+
+.delete {
+    color: rgb(172, 94, 94);
 }
 
 .edit:hover, .delete:hover, .complete:hover, .undo:hover{
