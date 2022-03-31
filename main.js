@@ -9,7 +9,7 @@ subBtn.addEventListener("click", (e) => {
 
     let addTask = document.getElementById("newTask");
     let addDate = document.getElementById("newDate");
-    
+
 
     if (addTask.value == "" || addDate.value == "") {
         return alert("Fill both the Task Description and the Due Date")
@@ -24,7 +24,7 @@ subBtn.addEventListener("click", (e) => {
     let myObj = {
         name: addTask.value,
         date: addDate.value,
-        
+
     }
 
     taskObj.push(myObj);
@@ -139,11 +139,11 @@ function showTasks() {
 
 //Sort Functions
 function sortBtnName() {
-    
+
     let orderState = document.getElementById("sBName");
     let tasksLi = localStorage.getItem("tasks");
     taskObj = JSON.parse(tasksLi);
-    
+
     if (taskObj.length < 2) {
         console.log("Theres not enough data to sort")
     } else {
@@ -160,23 +160,23 @@ function sortBtnName() {
                 orderN = 0;
                 orderState.innerHTML = "Sort by Name &#8595;";
                 break;
-        
+
             default:
                 break;
         }
-     
+
         localStorage.setItem("tasks", JSON.stringify(taskObj));
     }
 
     showTasks();
 }
 
-function sortBtnDate(){
+function sortBtnDate() {
 
-    let orderState = document.getElementById("sBDate");    
+    let orderState = document.getElementById("sBDate");
     let tasksLi = localStorage.getItem("tasks");
     taskObj = JSON.parse(tasksLi);
-    
+
     if (taskObj.length < 2) {
         console.log("Theres not enough data to sort")
     } else {
@@ -193,11 +193,11 @@ function sortBtnDate(){
                 orderD = 0;
                 orderState.innerHTML = "Sort by Name &#8595;";
                 break;
-        
+
             default:
                 break;
         }
-     
+
         localStorage.setItem("tasks", JSON.stringify(taskObj));
     }
 
@@ -252,10 +252,10 @@ function undoTask(index) {
     showTasks();
 
     let cTasksLi = localStorage.getItem("c-tasks");
-    
+
     cTasksLi = JSON.parse(cTasksLi);
     tasksLi = JSON.parse(tasksLi);
-    
+
     let task = cTasksLi[index].name;
     let date = cTasksLi[index].date;
 
@@ -323,7 +323,7 @@ function editTask(index) {
 
     let editTaskObj = JSON.parse(tasksLi);
 
-    if (editState.innerText.toLowerCase() == "edit"){
+    if (editState.innerText.toLowerCase() == "edit") {
 
         editState.innerText = "Save";
         editTask.removeAttribute("readonly");

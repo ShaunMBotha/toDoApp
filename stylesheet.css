@@ -198,7 +198,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: 2px;
     opacity: 0.6;
     filter: invert(0.8);
-  }
+}
 
 .actions {
     flex: 25%;
