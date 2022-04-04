@@ -55,25 +55,23 @@ function showTasks() {
         html += `
 
         <li>
-            
-                <div class="taskLi">
-                    <div class="num">
-                        <div>${index + 1}</div>
-                    </div>
-                    <div class="content">
-                        <input type="text" id="field${index}" class="text" size="50" value="${element.name}" readonly>
-                    </div>
-
-                    <div class="date">
-                        <input type="date" id="fieldD${index}" class="date" readonly value="${element.date}">
-                    </div>
-
-                    <div class="actions">
-                        <button id="edit${index}"onclick="editTask(${index})" class="edit">Edit</button>
-                        <button id="complete${index}"onclick="completeTask(${index})" class="complete">Complete</button>
-                    </div>
+            <div class="taskLi">
+                <div class="num">
+                    <div>${index + 1}</div>
                 </div>
-            
+                <div class="content">
+                    <input type="text" id="field${index}" class="text" size="50" value="${element.name}" readonly>
+                </div>
+
+                <div class="date">
+                    <input type="date" id="fieldD${index}" class="date" readonly value="${element.date}">
+                </div>
+
+                <div class="actions">
+                    <button id="edit${index}"onclick="editTask(${index})" class="edit">Edit</button>
+                    <button id="complete${index}"onclick="completeTask(${index})" class="complete">Complete</button>
+                </div>
+            </div>
         </li>
 
             `;
@@ -103,25 +101,23 @@ function showTasks() {
         cHtml += `
 
         <li>
-            
-                <div class="c-taskLi">
-                    <div class="num">
-                        <div>${cIndex + 1}</div>
-                    </div>
-                    <div class="content">
-                        <input type="text" id="cField${cIndex}" class="text" size="50" value="${element.name}" readonly>
-                    </div>
-
-                    <div class="date">
-                        <input type="date" id="cFieldD${cIndex}" class="date" readonly value="${element.date}">
-                    </div>
-
-                    <div class="actions">
-                        <button id="undo${cIndex}"onclick="undoTask(${cIndex})" class="undo">Undo</button>
-                        <button id="cD${cIndex}"onclick="cDeleteTask(${cIndex})" class="delete">Delete</button>
-                    </div>
+            <div class="c-taskLi">
+                <div class="num">
+                    <div>${cIndex + 1}</div>
                 </div>
-            
+                <div class="content">
+                    <input type="text" id="cField${cIndex}" class="text" size="50" value="${element.name}" readonly>
+                </div>
+
+                <div class="date">
+                    <input type="date" id="cFieldD${cIndex}" class="date" readonly value="${element.date}">
+                </div>
+
+                <div class="actions">
+                    <button id="undo${cIndex}"onclick="undoTask(${cIndex})" class="undo">Undo</button>
+                    <button id="cD${cIndex}"onclick="cDeleteTask(${cIndex})" class="delete">Delete</button>
+                </div>
+            </div>
         </li>
 
             `;
