@@ -181,13 +181,13 @@ function sortBtnDate() {
             case 0:
                 taskObj.sort((a, b) => (a.date < b.date ? -1 : 1));
                 orderD = 1;
-                orderState.innerHTML = "Sort by Name &#8593;";
+                orderState.innerHTML = "Sort by Date &#8593;";
                 break;
 
             case 1:
                 taskObj.sort((a, b) => (a.date > b.date ? -1 : 1));
                 orderD = 0;
-                orderState.innerHTML = "Sort by Name &#8595;";
+                orderState.innerHTML = "Sort by Date &#8595;";
                 break;
 
             default:
